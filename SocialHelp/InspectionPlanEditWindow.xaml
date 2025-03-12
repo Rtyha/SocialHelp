@@ -1,0 +1,53 @@
+﻿<controls:MetroWindow x:Class="SocialHelp.InspectionPlanEditWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      mc:Ignorable="d"
+                      Title="Редактирование плана" Height="450" Width="400"
+                      WindowStartupLocation="CenterScreen"
+                      GlowBrush="{DynamicResource AccentColorBrush}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Семья:" Grid.Row="0" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbFamily" Grid.Row="1" Margin="0,0,0,10" 
+                  DisplayMemberPath="FamilyName" SelectedValuePath="FamilyId"/>
+
+        <TextBlock Text="Сигнальная карта:" Grid.Row="2" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbSignalCard" Grid.Row="3" Margin="0,0,0,10" 
+                  DisplayMemberPath="SignalCardId" SelectedValuePath="SignalCardId"/>
+
+        <TextBlock Text="Сотрудник:" Grid.Row="4" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbEmployee" Grid.Row="5" Margin="0,0,0,10" 
+                  DisplayMemberPath="FullName" SelectedValuePath="EmployeeId" IsEnabled="False"/>
+
+        <TextBlock Text="Комиссия:" Grid.Row="6" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbCommission" Grid.Row="7" Margin="0,0,0,10" 
+                  DisplayMemberPath="CommissionId" SelectedValuePath="CommissionId"/>
+
+        <TextBlock Text="Дата плана:" Grid.Row="8" Margin="0,0,0,5"/>
+        <DatePicker x:Name="dpPlanDate" Grid.Row="9" Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="10" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Margin="0,0,10,0" Width="100"/>
+            <Button x:Name="btnCancel" Content="Отмена" Click="btnCancel_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Width="100"/>
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>

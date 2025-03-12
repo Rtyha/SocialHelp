@@ -1,0 +1,38 @@
+﻿<Page x:Class="SocialHelp.InspectionReportsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+      xmlns:local="clr-namespace:SocialHelp"
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="780"
+      Title="Акты обследования">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель управления -->
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+            <TextBox x:Name="txtFilter" Width="200" Margin="0,0,10,0" 
+                     controls:TextBoxHelper.Watermark="Фильтр по семье..." 
+                     TextChanged="txtFilter_TextChanged"/>
+            <Button x:Name="btnAddReport" Content="Добавить акт" Click="btnAddReport_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Margin="0,0,10,0"/>
+        </StackPanel>
+
+        <!-- Список актов -->
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl x:Name="reportsList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <local:InspectionReportCard Margin="0,0,0,10"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -1,0 +1,63 @@
+﻿<controls:MetroWindow x:Class="SocialHelp.FamilyDetailsWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      mc:Ignorable="d"
+                      Title="Подробности о семье" Height="338" Width="600"
+                      WindowStartupLocation="CenterScreen"
+                      GlowBrush="{DynamicResource AccentColorBrush}">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Название семьи:" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBlock x:Name="txtFamilyName" Grid.Row="1" FontSize="12" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Отец:" Grid.Row="2" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBlock x:Name="txtFatherDetails" Grid.Row="3" FontSize="12" Margin="0,0,0,10" TextWrapping="Wrap"/>
+
+            <TextBlock Text="Мать:" Grid.Row="4" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBlock x:Name="txtMotherDetails" Grid.Row="5" FontSize="12" Margin="0,0,0,10" TextWrapping="Wrap"/>
+
+            <TextBlock Text="Статус:" Grid.Row="6" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+            <TextBlock x:Name="txtStatus" Grid.Row="7" FontSize="12" Margin="0,0,0,10"/>
+
+            <TextBlock Text="Дети:" Grid.Row="8" FontSize="14" FontWeight="Bold" Margin="0,0,0,5"/>
+            <ItemsControl x:Name="childrenList" Grid.Row="9" Margin="0,0,0,10">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="3" Margin="0,0,0,5" Padding="5">
+                            <StackPanel>
+                                <TextBlock Text="{Binding FullName}" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding BirthDate, StringFormat='Дата рождения: {0:dd.MM.yyyy}'}"/>
+                                <TextBlock Text="{Binding Gender, StringFormat='Пол: {0}'}"/>
+                                <TextBlock Text="{Binding HasDisability, StringFormat='Инвалидность: {0:Есть|Нет}'}"/>
+                                <TextBlock Text="{Binding School, StringFormat='Школа: {0}'}"/>
+                                <TextBlock Text="{Binding Notes, StringFormat='Примечания: {0}'}" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <Button x:Name="btnClose" Grid.Row="10" Content="Закрыть" Click="btnClose_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Width="100" HorizontalAlignment="Right"/>
+        </Grid>
+    </ScrollViewer>
+</controls:MetroWindow>

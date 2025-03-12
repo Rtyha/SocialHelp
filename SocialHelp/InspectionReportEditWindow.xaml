@@ -1,0 +1,54 @@
+﻿<controls:MetroWindow x:Class="SocialHelp.InspectionReportEditWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      mc:Ignorable="d"
+                      Title="Редактирование акта" Height="526.611" Width="500"
+                      WindowStartupLocation="CenterScreen"
+                      GlowBrush="{DynamicResource AccentColorBrush}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="План обследования:" Grid.Row="0" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbPlan" Grid.Row="1" Margin="0,0,0,10" 
+                  DisplayMemberPath="PlanId" SelectedValuePath="PlanId"/>
+
+        <TextBlock Text="Дата обследования:" Grid.Row="2" Margin="0,0,0,5"/>
+        <DatePicker x:Name="dpInspectionDate" Grid.Row="3" Margin="0,0,0,10"/>
+
+        <TextBlock Text="Жалобы граждан:" Grid.Row="4" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtCitizenComplaints" Grid.Row="5" Margin="0,0,0,10" Height="50" AcceptsReturn="True" TextWrapping="Wrap"/>
+
+        <TextBlock Text="Материалы ПДН:" Grid.Row="6" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtPDNMaterials" Grid.Row="7" Margin="0,0,0,10" Height="50" AcceptsReturn="True" TextWrapping="Wrap"/>
+
+        <TextBlock Text="Материалы КДН:" Grid.Row="8" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtKDNMaterials" Grid.Row="9" Margin="0,0,0,10" Height="50" AcceptsReturn="True" TextWrapping="Wrap"/>
+
+        <TextBlock Text="Фамилия семьи:" Grid.Row="10" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtFamilyName" Grid.Row="11" Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="12" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Margin="0,0,10,0" Width="100"/>
+            <Button x:Name="btnCancel" Content="Отмена" Click="btnCancel_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Width="100"/>
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>

@@ -1,0 +1,57 @@
+﻿<controls:MetroWindow x:Class="SocialHelp.FamilyEditWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      mc:Ignorable="d"
+                      Title="Редактирование семьи" Height="520" Width="500"
+                      WindowStartupLocation="CenterScreen"
+                      GlowBrush="{DynamicResource AccentColorBrush}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <!-- Добавлена строка для поля поиска -->
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Название семьи:" Grid.Row="0" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtFamilyName" Grid.Row="1" Margin="0,0,0,10"/>
+
+        <TextBlock Text="Отец:" Grid.Row="2" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbFather" Grid.Row="3" Margin="0,0,0,10" DisplayMemberPath="FullName" SelectedValuePath="FatherId"/>
+
+        <TextBlock Text="Мать:" Grid.Row="4" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbMother" Grid.Row="5" Margin="0,0,0,10" DisplayMemberPath="FullName" SelectedValuePath="MotherId"/>
+
+        <TextBlock Text="Статус:" Grid.Row="6" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbStatus" Grid.Row="7" Margin="0,0,0,10" SelectedIndex="0">
+            <ComboBoxItem Content="Active"/>
+            <ComboBoxItem Content="Closed"/>
+        </ComboBox>
+
+        <TextBlock Text="Дети:" Grid.Row="8" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtChildFilter" Grid.Row="9" Margin="0,0,0,5" 
+                 controls:TextBoxHelper.Watermark="Поиск детей по ФИО..." 
+                 TextChanged="txtChildFilter_TextChanged"/>
+        <ListBox x:Name="lstChildren" Grid.Row="10" Margin="0,0,0,10" 
+                 SelectionMode="Multiple" DisplayMemberPath="FullName"/>
+
+        <StackPanel Grid.Row="11" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Margin="0,0,10,0" Width="100"/>
+            <Button x:Name="btnCancel" Content="Отмена" Click="btnCancel_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Width="100"/>
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>

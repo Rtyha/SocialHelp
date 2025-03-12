@@ -1,0 +1,39 @@
+﻿<controls:MetroWindow x:Class="SocialHelp.CommissionEditWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      mc:Ignorable="d"
+                      Title="Редактирование комиссии" Height="300" Width="400"
+                      WindowStartupLocation="CenterScreen"
+                      GlowBrush="{DynamicResource AccentColorBrush}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Сотрудник опеки:" Grid.Row="0" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtGuardianshipEmployee" Grid.Row="1" Margin="0,0,0,10"/>
+
+        <TextBlock Text="Сотрудник ПДН:" Grid.Row="2" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtPDNEmployee" Grid.Row="3" Margin="0,0,0,10"/>
+
+        <TextBlock Text="Сотрудник КДН:" Grid.Row="4" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtKDNEmployee" Grid.Row="5" Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Margin="0,0,10,0" Width="100"/>
+            <Button x:Name="btnCancel" Content="Отмена" Click="btnCancel_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Width="100"/>
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>

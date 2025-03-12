@@ -1,0 +1,62 @@
+﻿<controls:MetroWindow x:Class="SocialHelp.RegisterWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      mc:Ignorable="d"
+                      Title="Регистрация - SocialHelp" Height="500" Width="400"
+                      WindowStartupLocation="CenterScreen"
+                      GlowBrush="{DynamicResource AccentColorBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <StackPanel Grid.Row="0" Margin="20,30,20,10">
+            <TextBlock Text="Регистрация" FontSize="28" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Создание нового пользователя" FontSize="14" HorizontalAlignment="Center" Margin="0,5,0,20"/>
+        </StackPanel>
+
+        <!-- Форма регистрации -->
+        <Grid Grid.Row="1" Margin="30,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Поле ФИО -->
+            <TextBlock Grid.Row="0" Text="ФИО:" Margin="0,5"/>
+            <TextBox Grid.Row="1" x:Name="txtFullName" Margin="0,0,0,10" controls:TextBoxHelper.ClearTextButton="True"/>
+
+            <!-- Поле логина -->
+            <TextBlock Grid.Row="2" Text="Логин:" Margin="0,5"/>
+            <TextBox Grid.Row="3" x:Name="txtLogin" Margin="0,0,0,10" controls:TextBoxHelper.ClearTextButton="True"/>
+
+            <!-- Поле пароля -->
+            <TextBlock Grid.Row="4" Text="Пароль:" Margin="0,5"/>
+            <PasswordBox Grid.Row="5" x:Name="txtPassword" Margin="0,0,0,20" controls:TextBoxHelper.ClearTextButton="True"/>
+
+            <!-- Кнопка регистрации -->
+            <Grid Grid.Row="6">
+                <controls:ProgressRing x:Name="loadingIndicator" IsActive="False" Width="30" Height="30" HorizontalAlignment="Center"/>
+                <Button x:Name="btnRegister" Content="Зарегистрироваться" Click="btnRegister_Click" 
+                        Style="{DynamicResource MahApps.Styles.Button}" HorizontalAlignment="Center" MinWidth="150"/>
+            </Grid>
+        </Grid>
+
+        <!-- Статус сообщения -->
+        <TextBlock Grid.Row="2" x:Name="txtStatus" Margin="20,10,20,20" 
+                   TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="Red"/>
+    </Grid>
+</controls:MetroWindow>

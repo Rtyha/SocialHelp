@@ -1,0 +1,54 @@
+﻿<controls:MetroWindow x:Class="SocialHelp.ChildEditWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      mc:Ignorable="d"
+                      Title="Редактирование ребенка" Height="446.5" Width="400"
+                      WindowStartupLocation="CenterScreen"
+                      GlowBrush="{DynamicResource AccentColorBrush}">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="ФИО:" Grid.Row="0" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtFullName" Grid.Row="1" Margin="0,0,0,10"/>
+
+        <TextBlock Text="Дата рождения:" Grid.Row="2" Margin="0,0,0,5"/>
+        <controls:DateTimePicker x:Name="dpBirthDate" Grid.Row="3" Margin="0,0,0,10"/>
+
+        <TextBlock Text="Пол:" Grid.Row="4" Margin="0,0,0,5"/>
+        <ComboBox x:Name="cmbGender" Grid.Row="5" Margin="0,0,0,10" 
+                  ItemsSource="{Binding Genders}" SelectedIndex="0"/>
+
+        <TextBlock Text="Инвалидность:" Grid.Row="6" Margin="0,0,0,5"/>
+        <CheckBox x:Name="chkHasDisability" Grid.Row="7" Margin="0,0,0,10" Content="Есть"/>
+
+        <TextBlock Text="Школа:" Grid.Row="8" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtSchool" Grid.Row="9" Margin="0,0,0,10"/>
+
+        <TextBlock Text="Примечания:" Grid.Row="10" Margin="0,0,0,5"/>
+        <TextBox x:Name="txtNotes" Grid.Row="11" Margin="0,0,0,20" AcceptsReturn="True"/>
+
+        <StackPanel Grid.Row="12" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSave" Content="Сохранить" Click="btnSave_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Margin="0,0,10,0" Width="100"/>
+            <Button x:Name="btnCancel" Content="Отмена" Click="btnCancel_Click" 
+                    Style="{DynamicResource MahApps.Styles.Button}" Width="100"/>
+        </StackPanel>
+    </Grid>
+</controls:MetroWindow>

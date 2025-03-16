@@ -1,13 +1,6 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using DocumentFormat.OpenXml;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Wordprocessing;
 using SocialHelp.Models;
-using A = DocumentFormat.OpenXml.Drawing;
-using DW = DocumentFormat.OpenXml.Drawing.Wordprocessing;
-using PIC = DocumentFormat.OpenXml.Drawing.Pictures;
 using System.Data.Entity;
 using System.Linq;
 
@@ -20,7 +13,7 @@ namespace SocialHelp
             InitializeComponent();
         }
 
-        private void GenerateReport_Click(object sender, RoutedEventArgs e)
+        private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
             var report = (InspectionReportViewModel)DataContext;
 
@@ -28,77 +21,30 @@ namespace SocialHelp
             {
                 var reportEntity = context.InspectionReports
                     .Include(r => r.InspectionPlan)
+                    .Include(r => r.InspectionPlan.Family)
+                    .Include(r => r.InspectionPlan.Family.ChildrenInFamilies)
+                    .Include(r => r.InspectionPlan.Family.ChildrenInFamilies.Select(cif => cif.Child))
+                    .Include(r => r.InspectionPlan.Employee)
+                    .Include(r => r.InspectionPlan.SignalCard)
                     .FirstOrDefault(r => r.ReportId == report.Id);
-                if (reportEntity == null) return;
-
-                GenerateWordReport(reportEntity);
-            }
-        }
-
-        private void GenerateWordReport(InspectionReport report)
-        {
-            try
-            {
-                string filePath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), $"InspectionReport_{report.ReportId}.docx");
-
-                using (WordprocessingDocument doc = WordprocessingDocument.Create(filePath, WordprocessingDocumentType.Document))
+                if (reportEntity == null)
                 {
-                    MainDocumentPart mainPart = doc.AddMainDocumentPart();
-                    mainPart.Document = new Document();
-                    Body body = mainPart.Document.AppendChild(new Body());
-
-                    // Заголовок
-                    Paragraph titlePara = body.AppendChild(new Paragraph());
-                    Run titleRun = titlePara.AppendChild(new Run());
-                    titleRun.AppendChild(new Text("АКТ ОБСЛЕДОВАНИЯ СЕМЬИ"));
-                    titleRun.RunProperties = new RunProperties(new Bold());
-                    titlePara.ParagraphProperties = new ParagraphProperties(
-                        new Justification() { Val = JustificationValues.Center }
-                    );
-
-                    // Номер
-                    Paragraph idPara = body.AppendChild(new Paragraph());
-                    Run idRun = idPara.AppendChild(new Run());
-                    idRun.AppendChild(new Text($"№ {report.ReportId}"));
-                    idPara.ParagraphProperties = new ParagraphProperties(
-                        new Justification() { Val = JustificationValues.Left }
-                    );
-
-                    // Дата
-                    Paragraph datePara = body.AppendChild(new Paragraph());
-                    Run dateRun = datePara.AppendChild(new Run());
-                    dateRun.AppendChild(new Text(report.InspectionDate?.ToString("dd.MM.yyyy") ?? DateTime.Now.ToString("dd.MM.yyyy")));
-                    datePara.ParagraphProperties = new ParagraphProperties(
-                        new Justification() { Val = JustificationValues.Right }
-                    );
-
-                    // Пустая строка
-                    body.AppendChild(new Paragraph(new Run(new Text(""))));
-
-                    // Жалобы и материалы
-                    body.AppendChild(new Paragraph(new Run(new Text($"1. Жалобы и заявления граждан {report.CitizenComplaints ?? "_________________________"}"))));
-                    body.AppendChild(new Paragraph(new Run(new Text($"2. Материалы ПДН {report.PDNMaterials ?? "_________________________"}"))));
-                    body.AppendChild(new Paragraph(new Run(new Text($"3. Материалы КДН {report.KDNMaterials ?? "_________________________"}"))));
-
-                    // Пустая строка
-                    body.AppendChild(new Paragraph(new Run(new Text(""))));
-
-                    // Фамилия семьи
-                    Paragraph familyPara = body.AppendChild(new Paragraph());
-                    Run familyRun = familyPara.AppendChild(new Run());
-                    familyRun.AppendChild(new Text($"({report.InspectionPlan?.Family?.FamilyName ?? "фамилия семьи"})"));
-                    familyPara.ParagraphProperties = new ParagraphProperties(
-                        new Justification() { Val = JustificationValues.Center }
-                    );
-
-                    doc.Save();
+                    MessageBox.Show("Отчёт не найден.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
 
-                MessageBox.Show($"Отчёт сохранён по пути: {filePath}", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при создании отчёта: {ex.ToString()}", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Формируем данные для отображения в окне
+                string familyName = reportEntity.InspectionPlan?.Family?.FamilyName ?? "Не указана";
+                string employeeName = reportEntity.InspectionPlan?.Employee != null
+                    ? $"{reportEntity.InspectionPlan.Employee.FullName} (19.03.1992)"
+                    : "Не указан";
+                string childName = reportEntity.InspectionPlan?.Family?.ChildrenInFamilies?.FirstOrDefault()?.Child != null
+                    ? $"{reportEntity.InspectionPlan.Family.ChildrenInFamilies.FirstOrDefault().Child.FullName} ({reportEntity.InspectionPlan.Family.ChildrenInFamilies.FirstOrDefault().Child.BirthDate?.ToString("dd.MM.yyyy") ?? "06.04.2008"})"
+                    : "Не указан";
+
+                // Открываем окно с деталями
+                var detailsWindow = new InspectionReportDetailsWindow(reportEntity, familyName, employeeName, childName);
+                detailsWindow.ShowDialog();
             }
         }
 
@@ -135,10 +81,7 @@ namespace SocialHelp
         {
             if (this.Parent is FrameworkElement element && element.TemplatedParent is ItemsControl itemsControl)
             {
-                var page = itemsControl.TemplatedParent as InspectionReportsPage;
-
-            }
+                var page = itemsControl.TemplatedParent as InspectionReportsPage;            }
         }
-
     }
 }

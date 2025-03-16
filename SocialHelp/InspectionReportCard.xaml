@@ -21,8 +21,8 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,23">
-                <Button x:Name="btnGenerateReport" Content="Сформировать отчёт" Click="GenerateReport_Click" 
-                        Style="{DynamicResource MahApps.Styles.Button}" Width="140" Margin="0,0,10,0"/>
+                <Button x:Name="btnDetails" Content="Подробнее" Click="DetailsButton_Click" 
+                        Style="{DynamicResource MahApps.Styles.Button}" Width="100" Margin="0,0,10,0"/>
                 <Button x:Name="btnEdit" Content="Редактировать" Click="EditButton_Click" 
                         Style="{DynamicResource MahApps.Styles.Button}" Width="100" Margin="0,0,10,0"/>
                 <Button x:Name="btnDelete" Click="DeleteButton_Click" Width="32" Height="32" 

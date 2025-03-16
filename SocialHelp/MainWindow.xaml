@@ -26,8 +26,8 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0">
-                <StackPanel Height="45" Margin="0,1" Background="#E0E0E0" Width="241">
-                    <StackPanel Orientation="Horizontal" Margin="10,10">
+                <StackPanel Height="45" Margin="0,1" Width="241">
+                    <StackPanel Orientation="Horizontal" Margin="10,10" OpacityMask="Red">
                         <iconPacks:PackIconMaterial Kind="Account" Width="22" Height="22" VerticalAlignment="Center" Foreground="Black"/>
                         <TextBlock x:Name="txtUserName" Text="Пользователь" FontSize="14" VerticalAlignment="Center" Margin="10,0,0,0" Foreground="Black"/>
                     </StackPanel>
@@ -53,9 +53,6 @@
 
             <!-- Боковое меню с ФИО вверху -->
             <StackPanel Grid.Column="0" Background="#F5F5F5">
-                <!-- Статический элемент с ФИО -->
-
-
                 <!-- Список навигации -->
                 <ListView x:Name="MenuListView" 
                           Grid.Column="0" 
@@ -104,11 +101,19 @@
                             <TextBlock Text="Комиссии" Margin="10,0,0,0" VerticalAlignment="Center"/>
                         </StackPanel>
                     </ListViewItem>
+                    <!-- Новый пункт меню для Специальных отчётов -->
+                    <ListViewItem x:Name="menuSpecialReports" Height="45">
+                        <StackPanel Orientation="Horizontal">
+                            <iconPacks:PackIconMaterial Kind="RepeatVariant" Width="22" Height="22" VerticalAlignment="Center"/>
+                            <TextBlock Text="Отчет патронаж" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </ListViewItem>
                 </ListView>
             </StackPanel>
 
             <!-- Область для страниц -->
             <Frame x:Name="PageContent" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+            <Rectangle HorizontalAlignment="Left" Height="1" Stroke="#FF979797" VerticalAlignment="Top" Width="267" Grid.ColumnSpan="2"/>
         </Grid>
     </Grid>
 </controls:MetroWindow>

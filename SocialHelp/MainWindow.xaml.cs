@@ -1,7 +1,7 @@
 ﻿using MahApps.Metro.Controls;
-using MahApps.Metro.IconPacks; // Добавляем для iconPacks
+using MahApps.Metro.IconPacks;
 using SocialHelp.Models;
-using SocialHelp.Pages;
+using SocialHelp.Pages; // Убедитесь, что пространство имён для страниц указано
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -64,6 +64,11 @@ namespace SocialHelp
             {
                 PageContent.Navigate(new CommissionsPage());
                 txtPageTitle.Text = "Комиссии";
+            }
+            else if (selectedItem == menuSpecialReports)
+            {
+                PageContent.Navigate(new SpecialReportsPage());
+                txtPageTitle.Text = "Специальные отчёты";
             }
 
             // Сбрасываем выбор, чтобы можно было снова выбрать тот же пункт

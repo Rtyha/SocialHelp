@@ -289,18 +289,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Document.NET, Version=4.0.25103.5784, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Document.NET.4.0.25103.5784\lib\net40\Xceed.Document.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Drawing.NET, Version=1.0.25103.5784, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Drawing.NET.1.0.25103.5784\lib\net40\Xceed.Drawing.NET.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Pdf, Version=4.0.25103.5784, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Pdf.4.0.25103.5784\lib\net40\Xceed.Pdf.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Words.NET, Version=4.0.25103.5784, Culture=neutral, PublicKeyToken=ba83ff368b7563c6, processorArchitecture=MSIL">
-      <HintPath>..\packages\Xceed.Words.NET.4.0.25103.5784\lib\net40\Xceed.Words.NET.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -354,8 +342,14 @@
     <Compile Include="InspectionReportCard.xaml.cs">
       <DependentUpon>InspectionReportCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InspectionReportDetailsWindow.xaml.cs">
+      <DependentUpon>InspectionReportDetailsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="InspectionReportEditWindow.xaml.cs">
       <DependentUpon>InspectionReportEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InspectionReportInputWindow.xaml.cs">
+      <DependentUpon>InspectionReportInputWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="InspectionReportsPage.xaml.cs">
       <DependentUpon>InspectionReportsPage.xaml</DependentUpon>
@@ -385,6 +379,15 @@
       <DependentUpon>SignalCardsPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SocialHelpContext.cs" />
+    <Compile Include="SpecialReportCard.xaml.cs">
+      <DependentUpon>SpecialReportCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialReportCreateWindow.xaml.cs">
+      <DependentUpon>SpecialReportCreateWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpecialReportsPage.xaml.cs">
+      <DependentUpon>SpecialReportsPage.xaml</DependentUpon>
+    </Compile>
     <Page Include="ChildEditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -445,7 +448,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="InspectionReportDetailsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="InspectionReportEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InspectionReportInputWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -494,6 +505,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SignalCardsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpecialReportCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpecialReportCreateWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SpecialReportsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
